@@ -77,7 +77,7 @@ end
 local ok, fs = pcall(require, "fs")
 if not ok then fs = nil end
 
-local function isSymlink(path) return require("lfs").attributes(path).mode == "link" end
+local function isSymlink(path) return require("lfs").symlinkattributes(path, "mode") == "link" end
 if fs then isSymlink = fs.is_symlink end
 
 function FileSysGetRecursive(path, recursive, spec, opts)
